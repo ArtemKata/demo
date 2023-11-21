@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Show</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    .edit-button {
+      display: inline-block;
+      text-align: center;
+      color: white;
+      background-color: #4CAF50;
+      padding: 14px 20px;
+      text-decoration: none;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Age</th>
+      <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td th:text="${user.getId()}"></td>
+      <td th:text="${user.getFirstName()}"></td>
+      <td th:text="${user.getLastName()}"></td>
+      <td th:text="${user.getAge()}"></td>
+      <td th:text="${user.getEmail()}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<a th:href="@{/users/edit?id={id}(id=${user.getId()})}" class="edit-button">Edit</a>
+<br/>
+<form th:action="@{/users/delete?id={id}(id=${user.getId()})}" th:method="DELETE">
+  <input type="submit" value="Delete" class="edit-button" style="background-color: #f44336;" />
+</form>
+</body>
+</html>

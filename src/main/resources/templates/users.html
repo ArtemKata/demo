@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ShowUsers</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    .create-button {
+      display: inline-block;
+      text-align: center;
+      color: white;
+      background-color: #4CAF50;
+      padding: 14px 20px;
+      text-decoration: none;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="user : ${users}">
+    <td th:text="${user.getFirstName()} + ' ' + ${user.getLastName()}"></td>
+    <td th:text="${user.getAge()}"></td>
+    <td>
+      <a th:href="@{/users/show?id={id}(id=${user.getId()})}"
+         th:text="${'Profile'}">Profile</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<br/>
+<hr/>
+
+<a href="/users/new" class="create-button">Create new user</a>
+
+</body>
+</html>
